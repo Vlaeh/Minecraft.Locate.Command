@@ -1,0 +1,16 @@
+[
+{
+  "modid": "locate",
+  "name": "Locate for 1.10.2",
+  "description": "Provide /locate command to pre 1.11 Minecraft server",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Vlaeh"],
+  "credits": "The Forge and FML     guys, for making great job.",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
