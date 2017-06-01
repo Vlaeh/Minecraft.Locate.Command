@@ -6,4 +6,4 @@ The mod has been tested with Minecraft 1.10, and works with worlds generated usi
 
 ## Install
 
-Download release jar file and move to the "mods" directory of your Minecraft game
+Download latest released .jar file and move it to the "mods" directory of your Minecraft game
