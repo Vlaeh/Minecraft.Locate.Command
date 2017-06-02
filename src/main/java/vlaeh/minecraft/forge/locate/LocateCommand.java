@@ -50,7 +50,8 @@ public class LocateCommand extends CommandBase {
 
         final World entityWorld = sender.getEntityWorld();
         if (!(entityWorld instanceof WorldServer)) {
-            sender.sendMessage(new TextComponentString("Invalid server type " + entityWorld.getClass()));
+            sender.sendMessage(new TextComponentString("\u00a74Invalid server type " + entityWorld.getClass()));
+            return;
         }
         final BlockPos position = sender.getPosition();
         final WorldServer serverWorld = (WorldServer) entityWorld;
@@ -107,7 +108,7 @@ public class LocateCommand extends CommandBase {
                         gen = (MapGenStructure) FieldUtils.readField(world, "netherFortressGen", true);
                     }
                 } else
-                    sender.sendMessage(new TextComponentString("Unknown Chunk provider " + provider));
+                    sender.sendMessage(new TextComponentString("\u00a74Unknown Chunk provider " + provider));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -116,13 +117,13 @@ public class LocateCommand extends CommandBase {
                 try {
                     blockpos = gen.getClosestStrongholdPos(serverWorld, position);
                 } catch (Exception e) {
-                    sender.sendMessage(new TextComponentString("No " + structure + " available"));
+                    sender.sendMessage(new TextComponentString("\u00a74Unable to locate any " + structure + " feature"));
                     return;
                 }
             }
         }
         if (blockpos != null)
-            sender.sendMessage(new TextComponentString(structure + ": " + blockpos.getX() + ", " + blockpos.getZ()));
+            sender.sendMessage(new TextComponentString("Located " + structure + " at " + blockpos.getX() + " (y?) " + blockpos.getZ()));
         else
             sender.sendMessage(new TextComponentString("Could not locate " + structure));
     }

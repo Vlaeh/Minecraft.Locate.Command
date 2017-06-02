@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
         version = Locate.VERSION, //
         name = Locate.NAME, //
         acceptableRemoteVersions = "*", //
-        acceptedMinecraftVersions = "[1.10,1.12)" //
+        acceptedMinecraftVersions = "[1.9,1.12)" //
 )
 public class Locate {
     public static final String MODID = "locate";
@@ -29,7 +29,6 @@ public class Locate {
 
     @EventHandler
     public void serverLoad(FMLServerStartingEvent event) {
-        System.out.println("Registering command /" + LocateCommand.COMMAND);
         event.registerServerCommand(new LocateCommand());
     }
 
