@@ -1,6 +1,5 @@
 package vlaeh.minecraft.forge.locate;
 
-import java.lang.reflect.Field;
 import java.util.Collections;
 import java.util.List;
 
@@ -94,26 +93,16 @@ public class LocateCommand extends CommandBase {
                     } catch (Exception e) {
                         System.err.println("Failed loading ChunkProviderEnd field " + structure + ": " + e.toString());
                     }
-                } else if (provider.equals("com.khorn.terraincontrol.forge.generator.TXChunkGenerator")) {
-                    final Object world = FieldUtils.readField(chunkGenerator, "world", true);
-                    if (structure.equalsIgnoreCase("Village")) {
-                        gen = (MapGenStructure) FieldUtils.readField(world, "villageGen", true);
-                    } else if (structure.equalsIgnoreCase("Monument")) {
-                        gen = (MapGenStructure) FieldUtils.readField(world, "oceanMonumentGen", true);
-                    } else if (structure.equalsIgnoreCase("Temple")) {
-                        gen = (MapGenStructure) FieldUtils.readField(world, "rareBuildingGen", true);
-                    } else if (structure.equalsIgnoreCase("Mineshaft")) {
-                        gen = (MapGenStructure) FieldUtils.readField(world, "mineshaftGen", true);
-                    } else if (structure.equalsIgnoreCase("Fortress")) {
-                        gen = (MapGenStructure) FieldUtils.readField(world, "netherFortressGen", true);
-                    }
+                } else if (provider.equals("com.khorn.terraincontrol.forge.generator.TXChunkGenerator")
+                        || provider.equals("com.khorn.terraincontrol.forge.generator.ChunkProvider")){
+                    blockpos = TerrainControlLocator.locate(chunkGenerator, structure, serverWorld, position);
                 } else
                     sender.sendMessage(new TextComponentString("\u00a74Unknown Chunk provider " + provider));
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            if (gen != null) {
+            if ((gen != null) && (blockpos == null)) {
                 try {
                     blockpos = gen.getClosestStrongholdPos(serverWorld, position);
                 } catch (Exception e) {
